@@ -1,75 +1,27 @@
-apply plugin: 'com.android.library'
-
-android {
-    packageBuildConfig = false
-
-    lintOptions {
-        disable 'InvalidPackage', 'ContentDescription'
-        abortOnError false
+buildscript {
+    repositories {
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        mavenCentral()
+        jcenter()
     }
 
-    dexOptions {
-        jumboMode = true
-        preDexLibraries = false
-        javaMaxHeapSize "2g"
-    }
-
-    compileOptions {
-        encoding = "UTF-8"
-    }
-
-    compileSdkVersion Integer.parseInt(System.properties['compileSdkVersion'])
-    buildToolsVersion System.properties['buildToolsVersion']
-
-    defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
-    }
-
-    signingConfigs {
-        debug {
-            storeFile file('debug.keystore')
-        }
-    }
-
-    buildTypes {
-//        debug {
-//            minifyEnabled false
-//            signingConfig signingConfigs.debug
-//        }
-
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    sourceSets {
-        main {
-            manifest {
-                srcFile 'AndroidManifest.xml'
-            }
-            java {
-                srcDir 'src'
-            }
-            res {
-                srcDir 'res'
-            }
-            assets {
-                srcDir 'assets'
-            }
-            resources {
-                srcDir 'src'
-            }
-            aidl {
-                srcDir 'src'
-            }
-        }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+//        classpath 'com.github.xfumihiro.view-inspector:view-inspector-plugin:0.1.1'
+//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
     }
 }
 
-dependencies {
-    provided 'com.android.support:support-v4:23.1.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+allprojects {
+    repositories {
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        jcenter()
+        mavenLocal()
+    }
 }
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+

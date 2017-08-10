@@ -18,16 +18,16 @@
 use gradle:
 
 ```groovy
-    compile('com.tmall.android:tmallandroid_viewtracker:1.0.11.55@aar')
+    compile('com.alibaba.android:android_viewtracker:1.0.0@aar')
 ```
 
 use maven:
 
 ```xml
     <dependency>
-        <groupId>com.tmall.android</groupId>
-        <artifactId>tmallandroid_viewtracker</artifactId>
-        <version>1.0.11.55</version>
+        <groupId>com.alibaba.android</groupId>
+        <artifactId>android_viewtracker</artifactId>
+        <version>1.0.0</version>
         <type>aar</type>
     </dependency>
 ```
