@@ -20,19 +20,9 @@
 使用`gradle`:
 
 ```groovy
-compile('com.tmall.android:tmallandroid_viewtracker:1.0.11.55@aar')
+compile('com.tmall.android:tmallandroid_viewtracker:1.0.0@aar')
 ```
 
-使用`maven`:
-
-```xml
-<dependency>
-    <groupId>com.tmall.android</groupId>
-    <artifactId>tmallandroid_viewtracker</artifactId>
-    <version>1.0.11.55</version>
-    <type>aar</type>
-</dependency>
-```
 
 #### 应用启动时初始化配置
 
