@@ -17,7 +17,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 def siteUrl = 'https://github.com/alibaba/android_viewtracker'      // Homepage URL of the library
 def gitUrl = 'https://github.com/alibaba/android_viewtracker.git'
-
+def GROUP='com.alibaba.android'
 
 allprojects {
     repositories {
@@ -38,13 +38,7 @@ android {
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-
             java.srcDirs = ['src']
-//            aidl.srcDirs = ['src']
-//            renderscript.srcDirs = ['src']
-//            res.srcDirs = ['res']
-//            assets.srcDirs = ['assets']
-//            jniLibs.srcDirs = ['libs']
         }
 
     }
@@ -59,12 +53,13 @@ install {
         pom {
             project {
                 packaging 'aar'
+                groupId 'com.alibaba.android'
                 name 'android_viewtracker'//添加项目描述
                 url siteUrl
                 licenses {
                     license {
-                        name 'GPL-3.0'
-                        url 'https://www.gnu.org/licenses/gpl-3.0.txt'
+                        name 'Apache 2'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
                 }
                 developers {
@@ -84,21 +79,21 @@ install {
     }
 }
 
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('local.properties').newDataInputStream())
-//bintray {
-//    user = properties.getProperty("bintray.user")
-//    key = properties.getProperty("bintray.apikey")
-//    configurations = ['archives']
-//    pkg {
-//        repo = "maven"
-//        name = "android_viewtracker"
-//        websiteUrl = siteUrl
-//        vcsUrl = gitUrl
-//        licenses = ["GPL-3.0"]
-//        publish = true
-//    }
-//}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "android_viewtracker"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache 2"]
+        publish = true
+    }
+}
 
 
 

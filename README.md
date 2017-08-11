@@ -23,17 +23,6 @@ use `gradle`:
 compile('com.alibaba.android:android_viewtracker:1.0.0@aar')
 ```
 
-use `maven`:
-
-```xml
-<dependency>
-    <groupId>com.alibaba.android</groupId>
-    <artifactId>android_viewtracker</artifactId>
-    <version>1.0.0</version>
-    <type>aar</type>
-</dependency>
-```
-
 #### Init configuration when app start
 
 ```java
