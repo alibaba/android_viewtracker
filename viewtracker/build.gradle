@@ -5,16 +5,17 @@ def siteUrl = 'https://github.com/alibaba/android_viewtracker'      // Homepage 
 def gitUrl = 'https://github.com/alibaba/android_viewtracker.git'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
-    defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
+    compileSdkVersion Integer.parseInt(System.properties['compileSdkVersion'] ?: '22')
+    buildToolsVersion System.properties['buildToolsVersion'] ?: '21.0.2'
 
-        versionCode 1
-        versionName "1.0"
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion Integer.parseInt(System.properties['targetSdkVersion'] ?: '19')
+        versionCode Integer.parseInt(VERSION)
+        versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false

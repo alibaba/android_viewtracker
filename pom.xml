@@ -8,7 +8,7 @@
     <artifactId>android_viewtracker</artifactId>
     <name>android_viewtracker</name>
     <version>1.0.0</version>
-    <packaging>jar</packaging>
+    <packaging>aar</packaging>
     <description>a data collection library for click and exposure event in user interaction</description>
     <url>https://github.com/alibaba/android_viewtracker</url>
     <inceptionYear>2015</inceptionYear>
