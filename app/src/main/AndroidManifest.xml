@@ -1,15 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tmall.wireless.viewtracker"
-    android:versionCode="1"
-    android:versionName="1.0.0" >
 
-    <uses-sdk android:minSdkVersion="14"
-              android:targetSdkVersion="21" />
+    package="com.tmall.wireless.viewtracker">
 
-    <application >
+    <application>
         <receiver
             android:name=".internal.config.ConfigReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.tmall.wireless.viewtracker.config.changed" />
             </intent-filter>
