@@ -20,7 +20,7 @@
 use `gradle`:
 
 ```groovy
-compile('com.alibaba.android:android_viewtracker:1.0.0@aar')
+compile('com.alibaba.android:viewtracker:1.0.0@aar')
 ```
 
 #### Init configuration when app start

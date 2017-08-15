@@ -1,9 +1,25 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-def siteUrl = 'https://github.com/alibaba/android_viewtracker'      // Homepage URL of the library
-def gitUrl = 'https://github.com/alibaba/android_viewtracker.git'
+ext {
+    bintrayRepo = 'vtRepositories'
+    bintrayName = 'viewtracker'
+    publishedGroupId = GROUP
+    libraryName = ARTIFACT
+    artifact = ARTIFACT
+    libraryDescription = 'a data collection library for click and exposure event in user interaction'
 
+    siteUrl = 'https://github.com/alibaba/android_viewtracker'
+    gitUrl = 'https://github.com/alibaba/android_viewtracker.git'
+
+    libraryVersion = VERSION_NAME
+
+    developerId = 'deanhust'
+    developerName = 'deanhust'
+    developerEmail = 'lizhiyonghust@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 android {
     compileSdkVersion Integer.parseInt(System.properties['compileSdkVersion'] ?: '22')
     buildToolsVersion System.properties['buildToolsVersion'] ?: '21.0.2'
@@ -27,6 +43,7 @@ android {
     }
 }
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -36,50 +53,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-                groupId 'com.alibaba.android'
-                name 'android_viewtracker'//添加项目描述
-                url siteUrl
-                licenses {
-                    license {
-                        name 'Apache 2'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'deanhust'
-                        name 'deanhust'
-                        email 'lizhiyonghust@gmail.com'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
+File deployConfig = rootProject.file('jcenterInstall.gradle')
+if (deployConfig.exists()) {
+    apply from: rootProject.file('jcenterInstall.gradle')
 }
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = "android_viewtracker"
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache 2"]
-        publish = true
-    }
+deployConfig = rootProject.file('jcenterDeploy.gradle')
+if (deployConfig.exists()) {
+    apply from: rootProject.file('jcenterDeploy.gradle')
 }

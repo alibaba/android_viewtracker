@@ -34,7 +34,7 @@ dependencies {
         transitive = true
     }
 
-    compile('com.alibaba.android:android_viewtracker:1.0.0@aar')
+    compile('com.alibaba.android:viewtracker:1.0.0@aar')
 
     testCompile 'junit:junit:4.12'
 }
