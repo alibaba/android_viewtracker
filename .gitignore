@@ -40,3 +40,9 @@ local.properties
 # MAVEN COMPILE Files
 target/
 lint.xml
+
+#deploy
+jcenterDeploy.gradle
+jcenterInstall.gradle
+private_key_sender.asc
+public_key_sender.asc

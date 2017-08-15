@@ -20,7 +20,7 @@
 使用`gradle`:
 
 ```groovy
-compile('com.tmall.android:tmallandroid_viewtracker:1.0.0@aar')
+compile('com.tmall.android:viewtracker:1.0.0@aar')
 ```
 
 
