@@ -6,7 +6,7 @@
 
 ## Features
 
-* Two platform support (`iOS` & `Android`).
+* Two platforms support (`iOS` & `Android`).
 * Collect click and exposure event tracelessly, noninvasively.
 * Support multiple application scenarios（begin to scroll, end to scroll, auto scroll, window replace inside page, switch page in the TabActivity, enter into the next page, switch back and forth when press Home button).
 * Caller can set the custom data commit method.
