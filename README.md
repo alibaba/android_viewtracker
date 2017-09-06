@@ -127,8 +127,15 @@ getWindow().getDecorView().setTag(TrackerConstants.DECOR_VIEW_TAG_COMMON_INFO, a
 
 ## Author
 
-- mengge
-- yihai
+- [deanhust](https://github.com/deanhust) lizhiyonghust@gmail.com
+- [denneyliu](https://github.com/denneyliu)
+lmaz@163.com
 - yuanxiu
+
+## for Q&A
+Because the QR code of WeChat Group is valid for a short period , you can join us by search Sunshine07de in WeChat.
+
+for dingTalk
+![](viwetracker/qr-code/dingding-for-qa.png)
 
 ## [License](LICENSE.txt)

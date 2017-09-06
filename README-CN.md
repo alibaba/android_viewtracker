@@ -129,8 +129,14 @@ getWindow().getDecorView().setTag(TrackerConstants.DECOR_VIEW_TAG_COMMON_INFO, a
 
 ## 作者
 
-- 蒙戈
-- 意海
+- [意海](https://github.com/deanhust) lizhiyonghust@gmail.com
+- [蒙戈](https://github.com/denneyliu)
+lmaz@163.com
 - 元休
+
+## 答疑交流群
+
+钉钉群
+![](viewtracker/qr-code/dingtalk-for-qa.png)
 
 ## [许可证](LICENSE.txt)
