@@ -135,8 +135,8 @@ lmaz@163.com
 - 元休
 
 ## 答疑交流群
-
-钉钉群
+- 微信群二维码容易过期，可在微信中搜索Sunshine07de  
+- 钉钉交流群  
 ![](viewtracker/qr-code/dingtalk-for-qa.png)
 
 ## [许可证](LICENSE.txt)

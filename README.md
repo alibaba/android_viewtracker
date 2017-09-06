@@ -136,6 +136,6 @@ lmaz@163.com
 Because the QR code of WeChat Group is valid for a short period , you can join us by search Sunshine07de in WeChat.
 
 for dingTalk
-![](viwetracker/qr-code/dingding-for-qa.png)
+![](viewtracker/qr-code/dingtalk-for-qa.png)
 
 ## [License](LICENSE.txt)
