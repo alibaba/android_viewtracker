@@ -1,7 +1,7 @@
- ViewTracker-Android
- =====
-:book: English Documentation | [:book: Chinese Documentation](README-CN.md)
+ViewTracker-Android
+=====
 
+:book: English Documentation | [:book: Chinese Documentation](README-CN.md)
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
@@ -39,54 +39,57 @@
 
 ## 0 Abstract
 
-`ViewTracker` is used to collect the mobile client of click and exposure event log automated.
+`ViewTracker` is used to collect the mobile client of click and exposure event log automatically.
 
 ### 0.1 Functions
 
-* Support Android & IOS,[IOS github]((https://github.com/alibaba/TMViewTrackerSDK))
-* Support click & exposure events,the global infomation of page
-* Support multiple scenes,e.g slides,automatic scrolling,Window switch,Tab switch,page jump,front and back switch.
-* Support extension,data Submission、Customize the exposure rules,sampling rate.
+* Support `Android` & `iOS`([the github repo of `iOS` SDK](https://github.com/alibaba/TMViewTrackerSDK)).
+* Support click & exposure events, the global information of page.
+* Support multiple scenes, e.g. slides, automatic scrolling, window switch, tab switch, page jump, front and back switch.
+* Support extension, data Submission, customize the exposure rules, sampling rate.
 
 ### 0.2 Design Principles
 
-  * Keep It Simple:Avoid code complexity,Class name,package name,etc. are good readability.
-  * Single Responsibility Principle:A piece of code function that explicitly performs a single task,such as Click and Exposure.
-  * Open/Closed Principle:Maximize support for user extensions,such as the `DataCommitImpl` interface definition of data submission,the receiver of dynamic config provisioning.
+* Keep It Simple, Stupid(`KISS`) Principle: Avoid code complexity, class name, package name etc are good readability.
+* Single Responsibility Principle(`SRP`): A piece of code function that explicitly performs a single task, such as Click and Exposure.
+* Open/Closed Principle(`OCP`): Maximize support for user extensions, such as the `DataCommitImpl` interface definition of data submission, the receiver of dynamic config provisioning.
 
 ### 0.3 Basic Architecture
 
-  ![](viewtracker/img/viewtracker-Architecture.png)  
+![](viewtracker/img/viewtracker-Architecture.png)
 
 ### 0.4 Work Flow Chart
 
-  ![](viewtracker/img/viewtracker-workflow.png)  
+![](viewtracker/img/viewtracker-workflow.png)
 
 ## 1 Life-Cycle
 
 ### 1.1 System Properties
 
-  * Application onCreate
-  * FrameLayout onLayout onFling disPatchWindowFocusChanged dispatchVisibilityChanged
-  * GestureDetector onGestureListener
+* Application `onCreate`
+* FrameLayout `onLayout`/`onFling`/`disPatchWindowFocusChanged`/`dispatchVisibilityChanged`
+* GestureDetector `onGestureListener`
 
 ### 1.2 View Properties
 
-  * View AccessibilityDelegate
+* View `accessibilityDelegate`
 
 ## 3 Collection Specification
 
-  Data collection is closely related to data analysis statistics,the collection Specification of different events is critical.
+Data collection is closely related to data analysis statistics, the collection Specification of different events is critical.
 
 ### 3.1 The Specification Of Click Event
-  EventId:2101
-  ControlName:icon1
-  args:key1=value,key2=value
+
+* EventId: `2101`
+* ControlName: `icon1`
+* args: `key1=value,key2=value`
+
 ### 3.2 The Specification Of Exposure Event
-  EventId:2201
-  ControlName:icon1
-  exposureTime:500
-  args:exposureIndex=1,key1=value
+
+* EventId: `2201`
+* ControlName: `icon1`
+* exposureTime: `500`
+* args: `exposureIndex=1,key1=value`
 
 ## 4 Developer Guide
 
@@ -98,9 +101,12 @@ use `gradle`:
 compile('com.tmall.android:viewtracker:1.0.0@aar')
 ```
 
-### 4.2 Initilization
-#### 4.2.1 Startup Initilization(required)
-  When the application starts, call the following code:
+### 4.2 Initialization
+
+#### 4.2.1 Startup Initialization(required)
+
+When the application starts, call the following code:
+
 ```java
 /**
  * SDK initilization
@@ -114,7 +120,8 @@ TrackerManager.getInstance().init(mContext, mTrackerOpen, mTrackerExposureOpen, 
 ```
 
 #### 4.2.2 Data Submission(optional)
-   Implement the IDataCommit interface to set up data submission.
+
+Implement the IDataCommit interface to set up data submission.
 
 ```java
 Class DataCommit implments IDataCommit {}
@@ -122,14 +129,20 @@ TrackerManager.getInstance().setCommit(new DataCommit());
 ```
 
 ### 4.3 Tag Binding
+
 Tag needs to be bound to the view that needs to be collected.Look at the following situations.
+
 #### 4.3.1 The Tag Of Click & Exposure(required)
+
 ```java
 String viewName = "Button-1";
 view.setTag(TrackerConstants.VIEW_TAG_UNIQUE_NAME, viewName);
 ```
+
 #### 4.3.2 The Tag Of Extended Information(optional)
-    The extended information is bound to the view
+
+The extended information is bound to the view
+
 ```java
 HashMap<String, String> args = new HashMap<String, String>();
 args.put(key, value);
@@ -138,7 +151,8 @@ view.setTag(TrackerConstants.VIEW_TAG_PARAM, args);
 ```
 
 #### 4.3.3 The Tag Of Common Information(optional)
-  All the views of the page are required to be reported,you can look at the following code.
+
+All the views of the page are required to be reported,you can look at the following code.
 
 ```java
 HashMap<String, String> args = new HashMap<String, String>();
@@ -146,9 +160,10 @@ args.put(key, value);
 ...
 getWindow().getDecorView().setTag(TrackerConstants.DECOR_VIEW_TAG_COMMON_INFO, args);
 ```
+
 #### 4.3.4 The Tag Of Run-time Information(optional)
 
-  The server-side click event configuration `JSON` format is as follows
+The server-side click event configuration `JSON` format is as follows:
 
 ```js
 {
@@ -156,7 +171,8 @@ getWindow().getDecorView().setTag(TrackerConstants.DECOR_VIEW_TAG_COMMON_INFO, a
     "sampling":100 // Click event sampling rate
 }
 ```
-  The server-side exposure event configuration `JSON` format is as follows
+
+The server-side exposure event configuration `JSON` format is as follows:
 
 ```js
 {
@@ -167,7 +183,9 @@ getWindow().getDecorView().setTag(TrackerConstants.DECOR_VIEW_TAG_COMMON_INFO, a
     "batchOpen":false //Batch report switch
 }
 ```
-  After receiving the server configuration, the application sends the broadcast, and the SDK can receive and dynamically modify the configuration.
+
+After receiving the server configuration, the application sends the broadcast, and the SDK can receive and dynamically modify the configuration.
+
 ```java
 //get click config from server-side
 JSONObject config = new JSONObject();
@@ -185,36 +203,42 @@ context.sendBroadcast(intent);
 ```
 
 ## 5 Performance Testing
-  As each page has attached a `TrackerFrameLayout`, in the UI main thread of the event processing methods have exposure time calculation operation, may have a certain impact on the page fluency, so the need for performance testing.
+
+As each page has attached a `TrackerFrameLayout`, in the UI main thread of the event processing methods have exposure time calculation operation, may have a certain impact on the page fluency, so the need for performance testing.
 
 ### 5.1 The Goal Of Testing
-  The test the buried two ways of uses the `viewtracker` collection and the original code to submit for the FPS effect.
+
+The test the buried two ways of uses the `viewtracker` collection and the original code to submit for the FPS effect.
 
 ### 5.2 The Environment Of Testing
-  Phone Model：xiaomi2   
-  System Version：Android 5.0
-  App:Tmall Android
-  App Version:5.32.0
-  Page:HomePage
+
+* Phone Model: xiaomi2
+* System Version: `Android 5.0`
+* App: Tmall Android
+* App Version: `5.32.0`
+* Page: `HomePage`
+
 ### 5.3 The Results Of Testing
-  Index    | Traditional Code  | use `ViewTracker`
----------|-------------------|-------------
-Number Of Test   | 20   | 20
-MAX_FPS  | 60   | 63
-MIN_FPS  | 50   | 47
-AVG_FPS  |54.81 |53.90
-Resutl:`ViewTracker`has no significant effect on FPS.
+
+Index          | Traditional Code    | use `ViewTracker`
+---------      | ------------------- | -------------
+Number Of Test | 20                  | 20
+MAX_FPS        | 60                  | 63
+MIN_FPS        | 50                  | 47
+AVG_FPS        | 54.81               | 53.90
+
+Result: `ViewTracker`has no significant effect on `FPS`.
 
 ## 6 Authors
 
-- [yihai](https://github.com/deanhust) lizhiyonghust@gmail.com
-- [mengge](https://github.com/denneyliu)
-lmaz@163.com
-- yuanxiu
+- [@yihai](https://github.com/deanhust) lizhiyonghust \<at> gmail \<dot> com
+- [@mengge](https://github.com/denneyliu) lmaz \<at> 163 \<dot> com
+- @yuanxiu
 
 ## 7 License
 
-  `ViewTracker` is available under the Apache License 2.0. See the [LICENSE](https://github.com/alibaba/android_viewtracker/blob/master/LICENSE.txt) file for more info.  
+`ViewTracker` is available under the Apache License 2.0. See the [LICENSE](https://github.com/alibaba/android_viewtracker/blob/master/LICENSE.txt) file for more info.
 
 ## 8 WeChat Group
-  Because the QR code of WeChat Group is valid for a short period , you can join us by search `Sunshine07de` in WeChat  
+
+Because the QR code of WeChat Group is valid for a short period , you can join us by search `Sunshine07de` in WeChat.
