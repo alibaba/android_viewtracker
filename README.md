@@ -112,10 +112,10 @@ When the application starts, call the following:
 /**
  * SDK initilization
  *
- * @param mContext   						global context
- * @param mTrackerOpen  				click event switch,yes means open
- * @param mTrackerExposureOpen 	exposure event switch,yes means open
- * @param printLog      			  debug log switch,yes means open
+ * @param mContext              global context
+ * @param mTrackerOpen          click event switch,yes means open
+ * @param mTrackerExposureOpen  exposure event switch,yes means open
+ * @param printLog              debug log switch,yes means open
  */
 TrackerManager.getInstance().init(mContext, mTrackerOpen, mTrackerExposureOpen, printLog);
 ```
@@ -127,15 +127,15 @@ Implement the IDataCommit interface to set up data submission.
 ```java
 Class DataCommit implments IDataCommit {
 	...
-	//You implementation here
+	// your implementation here
 	...
 }
 TrackerManager.getInstance().setCommit(new DataCommit());
 ```
 
-**CAUTION**:  
+**CAUTION**:
 
-You should implement the interface `IDataCommit` in production environment, because the collected log data need be saved on your own server-side.  
+You should implement the interface `IDataCommit` in production environment, because the collected log data need be saved on your own server-side.
 
 ## 3.3 Tag Binding
 

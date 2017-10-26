@@ -112,10 +112,10 @@ compile('com.tmall.android:viewtracker:1.0.0@aar')
 /**
  * SDK的初始化
  *
- * @param mContext   						全局的application
- * @param mTrackerOpen 					是否开启无痕点击埋点
+ * @param mContext              全局的application
+ * @param mTrackerOpen          是否开启无痕点击埋点
  * @param mTrackerExposureOpen  是否开启无痕曝光埋点
- * @param printLog       				是否输出调试log
+ * @param printLog              是否输出调试log
  */
 TrackerManager.getInstance().init(mContext, mTrackerOpen, mTrackerExposureOpen, printLog);
 ```
@@ -126,14 +126,14 @@ TrackerManager.getInstance().init(mContext, mTrackerOpen, mTrackerExposureOpen, 
 
 ```java
 Class DataCommit implments IDataCommit {
-		...
-		// 你的自定义实现
-		...
+    ...
+    // 你的自定义实现
+    ...
 }
 TrackerManager.getInstance().setCommit(new DataCommit());
 ```
 
-**注意**：  
+**注意**：
 
 在生产环境使用，应该是定制实现`IDataCommit`该接口，采集的日志数据才能上传保存到你的服务器端。
 
