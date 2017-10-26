@@ -39,7 +39,7 @@ ViewTracker-Android
 
 # 0 Abstract
 
-`ViewTracker` is used to collect the mobile client of click and exposure event log automatically.
+`ViewTracker` is used to collect the mobile client of click and exposure event log automatically. It has been used in tmall App production environment from March 2016.
 
 ## 0.1 Functions
 
